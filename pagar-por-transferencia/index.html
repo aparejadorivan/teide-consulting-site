@@ -148,6 +148,26 @@
       font-size: 1.125rem !important;
     }
 
+    .quick {
+      background: var(--color-accent-light);
+      border-radius: 20px;
+      padding: 2rem 2.25rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .quick h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+
+    .guide .quick p { color: var(--color-text); }
+
+    .quick p:last-child { margin-bottom: 0; }
+
     .step {
       margin-top: 4rem;
       padding-top: 3rem;
@@ -180,12 +200,72 @@
       box-shadow: 0 8px 30px rgba(0,0,0,0.04);
     }
 
+    .shot a {
+      display: block;
+      cursor: zoom-in;
+    }
+
     .shot img {
       display: block;
       width: 100%;
       height: auto;
       border-radius: 10px;
     }
+
+    /* ── LIGHTBOX ── */
+    html.lightbox-open { overflow: hidden; }
+
+    .lightbox {
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      max-height: none;
+      margin: 0;
+      padding: 4.5rem 2rem 2rem;
+      border: 0;
+      background: rgba(26, 26, 26, 0.94);
+      overflow: auto;
+    }
+
+    .lightbox[open] {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox::backdrop { background: rgba(26, 26, 26, 0.6); }
+
+    .lightbox-img {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      border-radius: 10px;
+      background: var(--color-surface);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    .lightbox-close {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--color-surface);
+      color: var(--color-text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .lightbox-close:hover { background: var(--color-accent); color: #fff; }
+
+    .lightbox-close:focus-visible { outline: 2px solid var(--color-accent-light); outline-offset: 3px; }
 
     .callout {
       background: var(--color-surface);
@@ -291,6 +371,12 @@
 
       .shot img { border-radius: 8px; }
 
+      .quick { padding: 1.5rem; border-radius: 16px; }
+
+      .lightbox { padding: 4.5rem 0.5rem 1.5rem; }
+
+      .lightbox-img { width: 100%; max-height: none; border-radius: 6px; }
+
       .after { padding: 2rem 1.5rem; }
 
       .footer-inner { flex-direction: column; text-align: center; }
@@ -317,6 +403,12 @@
     <p class="section-label">Pago de presupuestos</p>
     <h1>Cómo pagar por transferencia</h1>
 
+    <section class="quick">
+      <h2>Si tienes prisa, esto es lo único que tienes que hacer</h2>
+      <p>Abre el enlace de pago del presupuesto y copia y pega en tu banco los datos tal cual aparecen: el IBAN y el titular como destinatario, el importe, y la referencia en el concepto. Elige la transferencia normal en euros, la ordinaria de toda la vida (ni inmediata ni internacional). Ya está: llega al día hábil siguiente y no tienes que avisarnos.</p>
+      <p>Si algo te falla o quieres verlo con más detalle, abajo tienes el proceso paso a paso con capturas de pantalla.</p>
+    </section>
+
     <p class="lead">Al abrir el enlace de pago del presupuesto verás una tarjeta con los datos bancarios: <strong>titular de la cuenta, BIC, IBAN, referencia y país</strong>. Cada enlace tiene su propio IBAN y su propia referencia: usa siempre los de tu enlace, no los de estas capturas.</p>
 
     <p>La transferencia se hace desde tu banco de siempre. Solo hay tres cosas que hacer bien.</p>
@@ -327,7 +419,7 @@
       <h2>Destinatario: copia el IBAN y el titular tal cual</h2>
       <p>En «nuevo destinatario» pega el IBAN y el nombre del titular exactamente como aparecen en el enlace de pago. El titular es un nombre largo (<code>OtoCo Base WY LLC - Teide Consulting - Series 191</code>): es correcto, no lo acortes ni lo «arregles». La cuenta es irlandesa (Citibank Europe), eso también es normal.</p>
       <figure class="shot">
-        <a href="/pagar-por-transferencia/paso-1-destino.png"><img src="/pagar-por-transferencia/paso-1-destino.png" width="1333" height="871" loading="lazy" alt="A la izquierda, la tarjeta de datos bancarios del enlace de pago; a la derecha, la pantalla «Destino» de BBVA con el IBAN y el nombre del beneficiario copiados de la tarjeta."></a>
+        <a href="/pagar-por-transferencia/paso-1-destino.png"><img src="/pagar-por-transferencia/paso-1-destino.png" width="1333" height="871" loading="lazy" alt="A la izquierda, la tarjeta de datos bancarios del enlace de pago; a la derecha, la pantalla «Destino» de BBVA con el IBAN y el nombre del beneficiario copiados de la tarjeta. El aviso amarillo de Stripe sobre SEPA instantánea aparece tachado."></a>
       </figure>
     </section>
 
@@ -337,7 +429,7 @@
       <h2>Importe y concepto: pon la referencia en el concepto</h2>
       <p>Escribe el importe del presupuesto y, en el campo «concepto», pega la <strong>referencia</strong> que te da el enlace de pago. Con esa referencia el pago se identifica solo y no hace falta que nos avises.</p>
       <figure class="shot">
-        <a href="/pagar-por-transferencia/paso-2-importe-concepto.png"><img src="/pagar-por-transferencia/paso-2-importe-concepto.png" width="1252" height="772" loading="lazy" alt="Pantalla «Importe y concepto» de BBVA: el importe del presupuesto en el campo de importe y la referencia del enlace de pago en el campo concepto."></a>
+        <a href="/pagar-por-transferencia/paso-2-importe-concepto.png"><img src="/pagar-por-transferencia/paso-2-importe-concepto.png" width="1252" height="772" loading="lazy" alt="Pantalla «Importe y concepto» de BBVA: el importe del presupuesto en el campo de importe y la referencia del enlace de pago en el campo concepto. El aviso amarillo de Stripe sobre SEPA instantánea aparece tachado."></a>
       </figure>
     </section>
 
@@ -349,12 +441,13 @@
 
       <div class="callout">
         <p><strong>Ojo: no elijas «transferencia internacional».</strong> Aunque la cuenta sea irlandesa, está en la zona euro: se paga con la transferencia normal en euros, la misma que usas para pagar a cualquier empresa española. La opción «internacional» de tu banco es para pagos fuera de la UE y no es la que toca.</p>
+        <p>La tarjeta de Stripe muestra un aviso amarillo recomendando «SEPA instantánea». Ignóralo: es un texto genérico de Stripe y con esta cuenta la instantánea no funciona. Elige siempre la ordinaria.</p>
       </div>
 
       <p><em>¿Pagas desde fuera de la zona euro?</em> Escríbenos a <a href="mailto:info@teideconsulting.com">info@teideconsulting.com</a> antes de hacer nada y te indicamos la forma de pago adecuada.</p>
 
       <figure class="shot">
-        <a href="/pagar-por-transferencia/paso-3-cuando.png"><img src="/pagar-por-transferencia/paso-3-cuando.png" width="1753" height="880" loading="lazy" alt="Pantalla «Cuándo» de BBVA con la opción «Puntual» seleccionada en lugar de «Inmediata»."></a>
+        <a href="/pagar-por-transferencia/paso-3-cuando.png"><img src="/pagar-por-transferencia/paso-3-cuando.png" width="1753" height="880" loading="lazy" alt="Pantalla «Cuándo» de BBVA con la opción «Puntual» seleccionada en lugar de «Inmediata». El aviso amarillo de Stripe sobre SEPA instantánea aparece tachado."></a>
       </figure>
     </section>
 
@@ -377,5 +470,46 @@
       </div>
     </div>
   </footer>
+
+  <!-- LIGHTBOX -->
+  <dialog class="lightbox" id="lightbox" aria-label="Captura ampliada">
+    <button type="button" class="lightbox-close" aria-label="Cerrar">
+      <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <img class="lightbox-img" alt="">
+  </dialog>
+
+  <script>
+    (function () {
+      var dialog = document.getElementById('lightbox');
+      // Sin soporte de <dialog>, los enlaces abren la imagen como antes.
+      if (typeof dialog.showModal !== 'function') return;
+
+      var img = dialog.querySelector('.lightbox-img');
+      var opener = null;
+
+      document.querySelectorAll('.shot a').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          opener = link;
+          img.src = link.getAttribute('href');
+          img.alt = link.querySelector('img').alt;
+          document.documentElement.classList.add('lightbox-open');
+          dialog.showModal();
+        });
+      });
+
+      // Cierra al pulsar fuera de la imagen o en la X; Escape lo gestiona <dialog>.
+      dialog.addEventListener('click', function (e) {
+        if (e.target !== img) dialog.close();
+      });
+
+      dialog.addEventListener('close', function () {
+        document.documentElement.classList.remove('lightbox-open');
+        img.removeAttribute('src');
+        if (opener) opener.focus();
+      });
+    })();
+  </script>
 </body>
 </html>
