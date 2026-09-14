@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cómo pagar por transferencia — Teide Consulting</title>
+  <meta name="description" content="Instrucciones paso a paso para pagar un presupuesto de Teide Consulting por transferencia SEPA ordinaria desde tu banco.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: #FAFAFA;
+      --color-surface: #FFFFFF;
+      --color-text: #1A1A1A;
+      --color-text-secondary: #5A5A5A;
+      --color-text-muted: #8A8A8A;
+      --color-accent: #2B5CE6;
+      --color-accent-light: #E8EEFB;
+      --color-border: #E8E8E8;
+      --color-border-light: #F0F0F0;
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--color-text);
+      background: var(--color-bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(250, 250, 250, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--color-border-light);
+    }
+
+    .nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: -0.02em;
+      color: var(--color-text);
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--color-accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--color-text); }
+
+    .nav-cta {
+      font-size: 0.875rem !important;
+      font-weight: 500 !important;
+      color: var(--color-surface) !important;
+      background: var(--color-text);
+      padding: 0.5rem 1.25rem;
+      border-radius: 6px;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--color-accent) !important; color: #fff !important; }
+
+    /* ── GUIDE ── */
+    .guide {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 9rem 2rem 6rem;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 1rem;
+    }
+
+    .guide h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 5vw, 3.25rem);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+
+    .guide p {
+      color: var(--color-text-secondary);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .guide strong { color: var(--color-text); font-weight: 600; }
+
+    .guide a { color: var(--color-accent); }
+
+    .guide code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.875em;
+      color: var(--color-text);
+      background: var(--color-border-light);
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+    }
+
+    .lead {
+      font-size: 1.125rem !important;
+    }
+
+    .step {
+      margin-top: 4rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .step-number {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      line-height: 1;
+      color: var(--color-accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .step h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      font-weight: 400;
+      margin-bottom: 1.25rem;
+    }
+
+    .shot {
+      margin-top: 2rem;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-light);
+      border-radius: 16px;
+      padding: 0.75rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+    }
+
+    .shot img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .callout {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-light);
+      border-left: 3px solid #E0A100;
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .callout p:last-child { margin-bottom: 0; }
+
+    .after {
+      margin-top: 4rem;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-light);
+      border-radius: 20px;
+      padding: 2.5rem;
+    }
+
+    .after h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      letter-spacing: -0.02em;
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+
+    .after p:last-child { margin-bottom: 0; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--color-border);
+      padding: 3rem 2rem;
+    }
+
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-left p {
+      font-size: 0.8125rem;
+      color: var(--color-text-muted);
+    }
+
+    .footer-left .company-name {
+      font-weight: 600;
+      color: var(--color-text-secondary);
+    }
+
+    .footer-right {
+      font-size: 0.8125rem;
+      color: var(--color-text-muted);
+    }
+
+    /* ── MOBILE ── */
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .mobile-toggle span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--color-text);
+      margin: 4px 0;
+      transition: all 0.3s;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-toggle { display: block; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: var(--color-bg);
+        border-bottom: 1px solid var(--color-border);
+        flex-direction: column;
+        padding: 1.5rem 2rem;
+        gap: 1.25rem;
+      }
+
+      .nav-links.open { display: flex; }
+
+      .guide { padding: 7rem 1.5rem 4rem; }
+
+      .step { margin-top: 3rem; padding-top: 2.5rem; }
+
+      .shot { padding: 0.375rem; border-radius: 12px; }
+
+      .shot img { border-radius: 8px; }
+
+      .after { padding: 2rem 1.5rem; }
+
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="logo">Teide<span>.</span></a>
+      <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#contact" class="nav-cta">Get in Touch</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="guide">
+    <p class="section-label">Pago de presupuestos</p>
+    <h1>Cómo pagar por transferencia</h1>
+
+    <p class="lead">Al abrir el enlace de pago del presupuesto verás una tarjeta con los datos bancarios: <strong>titular de la cuenta, BIC, IBAN, referencia y país</strong>. Cada enlace tiene su propio IBAN y su propia referencia: usa siempre los de tu enlace, no los de estas capturas.</p>
+
+    <p>La transferencia se hace desde tu banco de siempre. Solo hay tres cosas que hacer bien.</p>
+
+    <!-- PASO 1 -->
+    <section class="step">
+      <div class="step-number">01</div>
+      <h2>Destinatario: copia el IBAN y el titular tal cual</h2>
+      <p>En «nuevo destinatario» pega el IBAN y el nombre del titular exactamente como aparecen en el enlace de pago. El titular es un nombre largo (<code>OtoCo Base WY LLC - Teide Consulting - Series 191</code>): es correcto, no lo acortes ni lo «arregles». La cuenta es irlandesa (Citibank Europe), eso también es normal.</p>
+      <figure class="shot">
+        <a href="/pagar-por-transferencia/paso-1-destino.png"><img src="/pagar-por-transferencia/paso-1-destino.png" width="1333" height="871" loading="lazy" alt="A la izquierda, la tarjeta de datos bancarios del enlace de pago; a la derecha, la pantalla «Destino» de BBVA con el IBAN y el nombre del beneficiario copiados de la tarjeta."></a>
+      </figure>
+    </section>
+
+    <!-- PASO 2 -->
+    <section class="step">
+      <div class="step-number">02</div>
+      <h2>Importe y concepto: pon la referencia en el concepto</h2>
+      <p>Escribe el importe del presupuesto y, en el campo «concepto», pega la <strong>referencia</strong> que te da el enlace de pago. Con esa referencia el pago se identifica solo y no hace falta que nos avises.</p>
+      <figure class="shot">
+        <a href="/pagar-por-transferencia/paso-2-importe-concepto.png"><img src="/pagar-por-transferencia/paso-2-importe-concepto.png" width="1252" height="772" loading="lazy" alt="Pantalla «Importe y concepto» de BBVA: el importe del presupuesto en el campo de importe y la referencia del enlace de pago en el campo concepto."></a>
+      </figure>
+    </section>
+
+    <!-- PASO 3 -->
+    <section class="step">
+      <div class="step-number">03</div>
+      <h2>Elige transferencia ordinaria, no inmediata</h2>
+      <p>Selecciona la transferencia SEPA <strong>ordinaria</strong> (en BBVA se llama «Puntual»; en otros bancos «estándar» o «normal»). La transferencia <strong>inmediata o instantánea no funciona</strong> con esta cuenta y tu banco la rechazará. La ordinaria llega el día hábil siguiente y no tiene comisión.</p>
+
+      <div class="callout">
+        <p><strong>Ojo: no elijas «transferencia internacional».</strong> Aunque la cuenta sea irlandesa, está en la zona euro: se paga con la transferencia normal en euros, la misma que usas para pagar a cualquier empresa española. La opción «internacional» de tu banco es para pagos fuera de la UE y no es la que toca.</p>
+      </div>
+
+      <p><em>¿Pagas desde fuera de la zona euro?</em> Escríbenos a <a href="mailto:info@teideconsulting.com">info@teideconsulting.com</a> antes de hacer nada y te indicamos la forma de pago adecuada.</p>
+
+      <figure class="shot">
+        <a href="/pagar-por-transferencia/paso-3-cuando.png"><img src="/pagar-por-transferencia/paso-3-cuando.png" width="1753" height="880" loading="lazy" alt="Pantalla «Cuándo» de BBVA con la opción «Puntual» seleccionada en lugar de «Inmediata»."></a>
+      </figure>
+    </section>
+
+    <section class="after">
+      <p class="section-label">¿Y después?</p>
+      <h2>Te enviamos la factura</h2>
+      <p>Cuando el dinero llegue, te enviamos la factura por email. Si al día hábil siguiente no has recibido nada, escríbenos a <a href="mailto:info@teideconsulting.com">info@teideconsulting.com</a> indicando el número de presupuesto.</p>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left">
+        <p><span class="company-name">Teide Consulting</span></p>
+        <p>info@teideconsulting.com</p>
+      </div>
+      <div class="footer-right">
+        <p>&copy; 2026 Teide Consulting. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
